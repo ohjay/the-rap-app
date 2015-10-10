@@ -17,6 +17,7 @@
     <script>
         var recognition = new webkitSpeechRecognition();
         recognition.interimResults = true;
+        recognition.continuous = true;
         
         $('#start').text('Starting up voice recognition...');
         
