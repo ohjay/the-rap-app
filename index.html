@@ -8,19 +8,35 @@
 </head>
 <body>
     <p>Hey, welcome to the Rap App! I'm just testing out some speech recognition stuff right now.</p>
-    <div id="test"></div>
+    <div id="start"></div>
+    <div id="final-transcript"></div>
+    <div id="interim-transcript"></div>
     
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/annyang/2.0.0/annyang.min.js"></script>
     <script>
-        if (annyang) {
-            var commands = {
-                'hello': function() { $('#test').text('Hello to you too!'); }
-            };
-            annyang.addCommands(commands);
-            annyang.start();
-        }
+        var recognition = new webkitSpeechRecognition();
+        recognition.interimResults = true;
+        
+        $('#start').text('Starting up voice recognition...');
+        
+        recognition.onresult = function(event) {
+            var final_transcript = '';
+            var interim_transcript = '';
+            
+            for (var i = event.resultIndex; i < event.results.length; i++) {
+                if (event.results[i].isFinal) {
+                    final_transcript += event.results[i][0].transcript;
+                } else {
+                    interim_transcript += event.results[i][0].transcript;
+                }
+            }
+            
+            document.getElementById("final-transcript").innerHTML = final_transcript;
+            document.getElementById("interim-transcript").innerHTML = interim_transcript;
+        };
+        
+        recognition.start();
     </script>
 </body>
 </html>
