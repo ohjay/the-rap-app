@@ -7,6 +7,48 @@
     <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-    <!-- Insert stuff here -->
+    <p>Hey, welcome to the Rap App! I'm just testing out some speech recognition stuff right now.</p>
+    <div id="log"></div>
+    <div id="final-transcript"></div>
+    <div id="interim-transcript"></div>
+    
+    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        var recognition = new webkitSpeechRecognition();
+        recognition.interimResults = true;
+        recognition.continuous = true;
+        
+        $('#log').text('Starting up voice recognition...');
+        
+        recognition.onresult = function(event) {
+            var final_transcript = '';
+            var interim_transcript = '';
+            
+            for (var i = event.resultIndex; i < event.results.length; i++) {
+                if (event.results[i].isFinal) {
+                    final_transcript += event.results[i][0].transcript;
+                    recognition.stop();
+                    $('#log').text('That was it! But don\'t worry, we\'ll soon start up again.');
+                } else {
+                    interim_transcript += event.results[i][0].transcript;
+                }
+            }
+            
+            document.getElementById("final-transcript").innerHTML = final_transcript;
+            document.getElementById("interim-transcript").innerHTML = interim_transcript;
+        };
+        
+        recognition.onerror = function(event) {
+            $('#log').text('Oh no, an error!');
+        };
+        
+        recognition.onend = function() { 
+            $('#log').text('It\'s over! It\'s all over!');
+            recognition.start();
+        };
+         
+        recognition.start();
+    </script>
 </body>
 </html>
