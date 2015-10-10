@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<link rel="icon" href="images/dragonhead.ico">
-    <title>Rap App</title>
+    <title>The Rap App</title>
     
     <link rel="stylesheet" href="css/style.css" />
     <link href=' http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
@@ -41,7 +41,7 @@
 
     <p>
         Hey, welcome to the Rap App! I'm just testing out some speech recognition stuff right now.
-        <div id="log"></div>`
+        <div id="log"></div>
         <div id="final-word"></div>
         <div style="text-align: center">
             <span id="typed"></span>
@@ -52,58 +52,56 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="js/typed.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $("#typed").typed({
-                strings: ["Coconut strips and...", "^1000 banana chips."],
-                typeSpeed: 0,
-                backDelay: 500
-            });
-                
-            var newSpeechRecognition = function() {
-                var r = new webkitSpeechRecognition();
-                // r.interimResults = true;
-                // r.continuous = true;
-            
-                r.onresult = function(event) {
-                    /* Only the final word */
-                    if (event.results[event.results.length - 1].isFinal) {
-                        document.getElementById("final-word").innerHTML 
-                                = "Final phrase: " + event.results[event.results.length - 1][0].transcript;
-                        r.stop();
-                    }
-                
-                    /* All words:
-                    var final_transcript = '';
-                    var interim_transcript = '';
-                
-                    for (var i = event.resultIndex; i < event.results.length; i++) {
-                        if (event.results[i].isFinal) {
-                            final_transcript += event.results[i][0].transcript;
-                            r.stop();
-                        } else {
-                            interim_transcript += event.results[i][0].transcript;
-                        }
-                    }
-            
-                    document.getElementById("final-transcript").innerHTML = final_transcript;
-                    document.getElementById("interim-transcript").innerHTML = interim_transcript; */
-                };
-            
-                r.onerror = function(event) {
-                    $('#log').text('[ERROR]: ' + event.error);
-                };
-            
-                r.onend = function() { 
-                    $('#log').text('It\'s over! It\'s all over!');
-                    recognition = newSpeechRecognition();
-                    recognition.start();
-                };
-            
-                return r;
-            }
+        var newSpeechRecognition = function() {
+            var r = new webkitSpeechRecognition();
+            // r.interimResults = true;
+            // r.continuous = true;
         
-            var recognition = newSpeechRecognition();
-            recognition.start();
+            r.onresult = function(event) {
+                /* Only the final word */
+                if (event.results[event.results.length - 1].isFinal) {
+                    document.getElementById("final-word").innerHTML 
+                            = "Final phrase: " + event.results[event.results.length - 1][0].transcript;
+                    r.stop();
+                }
+            
+                /* All words:
+                var final_transcript = '';
+                var interim_transcript = '';
+            
+                for (var i = event.resultIndex; i < event.results.length; i++) {
+                    if (event.results[i].isFinal) {
+                        final_transcript += event.results[i][0].transcript;
+                        r.stop();
+                    } else {
+                        interim_transcript += event.results[i][0].transcript;
+                    }
+                }
+        
+                document.getElementById("final-transcript").innerHTML = final_transcript;
+                document.getElementById("interim-transcript").innerHTML = interim_transcript; */
+            };
+        
+            r.onerror = function(event) {
+                $('#log').text('[ERROR]: ' + event.error);
+            };
+        
+            r.onend = function() { 
+                $('#log').text('It\'s over! It\'s all over!');
+                // recognition = newSpeechRecognition();
+                // recognition.start();
+            };
+        
+            return r;
+        };
+    
+        var recognition = newSpeechRecognition();
+        recognition.start();
+        
+        $("#typed").typed({
+            strings: ["Coconut strips and...", "^1000 banana chips."],
+            typeSpeed: 0,
+            backDelay: 500
         });
     </script>
 </body>
