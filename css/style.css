@@ -1,1 +1,52 @@
 /* Insert stuff here */
+@font-face {
+  font-family: aight;
+  src: local("aight"),
+       local("aight"),
+       url(aight.ttf);
+  font-weight: bold;
+}
+
+h1 {
+	font-family: 'aight';
+	color: #ead06c;
+	font-size: 65px;
+	text-align: center;
+	font-weight: normal;
+}
+
+p {
+	font-family: 'Roboto Condensed';
+	color: #ead06c;
+	font-size: 18px;
+	text-align: center;
+}
+
+#Drake {
+    position: absolute;
+    left: 10px;
+    top: 360px;
+    z-index: -1;
+}
+
+#Cole {
+    position: absolute;
+    left: 760px;
+    top: 350px;
+    z-index: -1;
+}
+
+#Kanye {
+    position: absolute;
+    left: 890px;
+    top: -20px;
+    z-index: -1;
+}
+
+#Kendrick {
+    position: absolute;
+    left: 10px;
+    top: 50px;
+    z-index: -1;
+}
+
