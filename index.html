@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<LINK REL="icon" HREF="dragonhead.ico">
+	<link rel="icon" href="images/dragonhead.ico">
     <title>Rap App</title>
     
     <link rel="stylesheet" href="css/style.css" />
@@ -9,7 +9,7 @@
 
 </head>
 
-<body background="black-background-blend.png">
+<body background="images/black-background-blend.png">
 	<!--
 	<p> </p>
 	<p> </p>
@@ -24,75 +24,87 @@
 
 	<!-- Images -->
 	<div id="Drake">
-		<img src = "drake-black-background(newest).png" alt="Drake" height="280"/>
+		<img src = "images/drake-black-background(newest).png" alt="Drake" height="280"/>
 	</div>
 
 	<div id="Cole">
-		<img src = "j-cole-black-background(new).png" alt="Cole" height="340"/>
+		<img src = "images/j-cole-black-background(new).png" alt="Cole" height="340"/>
 	</div>
 
 	<div id="Kanye">
-		<img src = "kanye-black-background.png" alt="Kanye" height="380"/>
+		<img src = "images/kanye-black-background.png" alt="Kanye" height="380"/>
 	</div>
 
 	<div id="Kendrick">
-		<img src = "kendrick-black-background(new).png" alt="Kendrick" height="260"/>
+		<img src = "images/kendrick-black-background(new).png" alt="Kendrick" height="260"/>
 	</div>
 
     <p>
         Hey, welcome to the Rap App! I'm just testing out some speech recognition stuff right now.
-        <div id="log"></div>
+        <div id="log"></div>`
         <div id="final-word"></div>
+        <div style="text-align: center">
+            <span id="typed"></span>
+        </div>
     </p>
     
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/typed.min.js"></script>
     <script>
-        var newSpeechRecognition = function() {
-            var r = new webkitSpeechRecognition();
-            // r.interimResults = true;
-            // r.continuous = true;
+        $(document).ready(function() {
+            $("#typed").typed({
+                strings: ["Coconut strips and...", "^1000 banana chips."],
+                typeSpeed: 0,
+                backDelay: 500
+            });
+                
+            var newSpeechRecognition = function() {
+                var r = new webkitSpeechRecognition();
+                // r.interimResults = true;
+                // r.continuous = true;
             
-            r.onresult = function(event) {
-                /* Only the final word */
-                if (event.results[event.results.length - 1].isFinal) {
-                    document.getElementById("final-word").innerHTML 
-                            = "Final phrase: " + event.results[event.results.length - 1][0].transcript;
-                    r.stop();
-                }
-                
-                /* All words:
-                var final_transcript = '';
-                var interim_transcript = '';
-                
-                for (var i = event.resultIndex; i < event.results.length; i++) {
-                    if (event.results[i].isFinal) {
-                        final_transcript += event.results[i][0].transcript;
+                r.onresult = function(event) {
+                    /* Only the final word */
+                    if (event.results[event.results.length - 1].isFinal) {
+                        document.getElementById("final-word").innerHTML 
+                                = "Final phrase: " + event.results[event.results.length - 1][0].transcript;
                         r.stop();
-                    } else {
-                        interim_transcript += event.results[i][0].transcript;
                     }
-                }
+                
+                    /* All words:
+                    var final_transcript = '';
+                    var interim_transcript = '';
+                
+                    for (var i = event.resultIndex; i < event.results.length; i++) {
+                        if (event.results[i].isFinal) {
+                            final_transcript += event.results[i][0].transcript;
+                            r.stop();
+                        } else {
+                            interim_transcript += event.results[i][0].transcript;
+                        }
+                    }
             
-                document.getElementById("final-transcript").innerHTML = final_transcript;
-                document.getElementById("interim-transcript").innerHTML = interim_transcript; */
-            };
+                    document.getElementById("final-transcript").innerHTML = final_transcript;
+                    document.getElementById("interim-transcript").innerHTML = interim_transcript; */
+                };
             
-            r.onerror = function(event) {
-                $('#log').text('[ERROR] Might want to check that.');
-            };
+                r.onerror = function(event) {
+                    $('#log').text('[ERROR]: ' + event.error);
+                };
             
-            r.onend = function() { 
-                $('#log').text('It\'s over! It\'s all over!');
-                recognition = newSpeechRecognition();
-                recognition.start();
-            };
+                r.onend = function() { 
+                    $('#log').text('It\'s over! It\'s all over!');
+                    recognition = newSpeechRecognition();
+                    recognition.start();
+                };
             
-            return r;
-        }
+                return r;
+            }
         
-        var recognition = newSpeechRecognition();
-        recognition.start();
+            var recognition = newSpeechRecognition();
+            recognition.start();
+        });
     </script>
 </body>
 </html>

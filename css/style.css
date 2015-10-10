@@ -15,11 +15,22 @@ h1 {
 	font-weight: normal;
 }
 
-p {
+p, #id, #log {
 	font-family: 'Roboto Condensed';
 	color: #ead06c;
 	font-size: 18px;
 	text-align: center;
+}
+
+#typed {
+	font-family: 'Roboto Condensed';
+	color: #ead06c;
+	font-size: 70px;
+}
+
+span {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #Drake {
@@ -48,5 +59,33 @@ p {
     left: 10px;
     top: 50px;
     z-index: -1;
+}
+
+.typed-cursor {
+	font-family: 'Roboto Condensed';
+	color: #ead06c;
+	font-size: 70px;
+    opacity: 1;
+    -webkit-animation: blink 0.7s infinite;
+    -moz-animation: blink 0.7s infinite;
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+
+@-webkit-keyframes blink {
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+
+@-moz-keyframes blink {
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
 }
 
