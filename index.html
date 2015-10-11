@@ -87,17 +87,16 @@ function frameLooper(){
         Hey, welcome to the Rap App! I'm just testing out some speech recognition stuff right now.
         <div id="log"></div>
         <div id="final-word"></div>
+        <div id="rhymes"></div>
         <div style="text-align: center">
             <span id="typed"></span>
         </div>
     </p>
 
-
     <!-- Buttons -->
     <div id="Start">
     	<button type="button">Start</button>
     </div>
-
     
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -117,8 +116,11 @@ function frameLooper(){
             r.onresult = function(event) {
                 /* Only the final word */
                 if (event.results[event.results.length - 1].isFinal) {
-                    document.getElementById("final-word").innerHTML 
-                            = "Final phrase: " + event.results[event.results.length - 1][0].transcript;
+                    var finalPhrase = event.results[event.results.length - 1][0].transcript;
+                    var finalWord = finalPhrase.substring(finalPhrase.lastIndexOf(' ') + 1);
+                    
+                    document.getElementById("final-word").innerHTML = "You said: " + finalPhrase;
+                    document.getElementById("rhymes").innerHTML = "Rhymes: " + lookup(finalWord);
                     r.stop();
                 }
             
@@ -143,8 +145,7 @@ function frameLooper(){
                 $('#log').text('[ERROR]: ' + event.error);
             };
         
-            r.onend = function() { 
-                $('#log').text('It\'s over! It\'s all over!');
+            r.onend = function() {
                 recognition = newSpeechRecognition();
                 recognition.start();
             };
