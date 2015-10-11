@@ -101,6 +101,8 @@ function frameLooper(){
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="js/typed.min.js"></script>
+    <script src="js/trie.js"></script>
+    <script src="js/rhyme_lookup.js"></script>
     <script>
         var newSpeechRecognition = function() {
             $("#typed").typed({
@@ -120,7 +122,7 @@ function frameLooper(){
                     var finalWord = finalPhrase.substring(finalPhrase.lastIndexOf(' ') + 1);
                     
                     document.getElementById("final-word").innerHTML = "You said: " + finalPhrase;
-                    document.getElementById("rhymes").innerHTML = "Rhymes: " + lookup(finalWord);
+                    document.getElementById("rhymes").innerHTML = "Rhymes: " + lookup(finalWord).toString();
                     r.stop();
                 }
             
