@@ -27,10 +27,10 @@ function initMp3Player(){
     function start() {
         if (audio.paused) {
             audio.play();
-            startbtn.innerHTML = "Stop";
+            startbtn.innerHTML = "<button type="button">Stop</button>";
         } else {
             audio.pause();
-            startbtn.innerHTML = "Start";
+            startbtn.innerHTML = "<button type="button">Start</button>";
         }
         
     }
