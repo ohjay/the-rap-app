@@ -1,4 +1,6 @@
-    	A: "/eI/",	
+var mobypron = { 
+
+    A: "/eI/",	
 
 	a: "/eI/",	
 
@@ -122902,5 +122904,6 @@
 
 	zymosis: "z/aI/'m/oU/s/I/s",	
 
-	zymotic: "z/aI/'m/A/t/I/k",	
+	zymotic: "z/aI/'m/A/t/I/k"
 
+}

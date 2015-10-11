@@ -44,7 +44,9 @@ Trie.prototype = {
      * Gets all of the words in the trie.
      */
     getAllWords: function() {
-        var words = [], c;
+        var words = [], 
+            c;
+            
         if (this.word != null) {
             words.push(word);
         }
