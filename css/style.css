@@ -87,8 +87,8 @@ button {
     margin: auto;
     text-align: center;
     border: 0px;
-    transition: all 0.4s ease 0.1s;
     opacity: 1;
+    transition: all 0.2s ease 0.1s;
     cursor: pointer;
     outline: none;
 }
@@ -105,7 +105,7 @@ button:hover {
     margin: auto;
     text-align: center;
     border: 0px;
-    transition: all 0.4s ease 0.1s;
+    transition: all 0.2s ease 0.1s;
     opacity: 0.6;
 }
 
