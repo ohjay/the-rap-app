@@ -7,10 +7,7 @@ with open ("websters-dictionary.txt", "r") as myfile:
 with open("mobypron_new.txt") as myfile2:
 	content = myfile2.readlines()
 
-for line in content:
-	if (line.split(":")[0][2:]).upper() in data:
-		target.write(str(line) + '\n')
-		print(line)
+print(len(content))
 
 
 rap_list.close()

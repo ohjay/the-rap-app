@@ -89,14 +89,36 @@ button {
     border: 0px;
     transition: all 0.4s ease 0.1s;
     opacity: 1;
+    cursor: pointer;
+    outline: none;
 }
 
 button:hover {
-	color: #ead06c;
+	background: #ead06c;
+    color: black;
+    font-family: 'Roboto Condensed';
+    font-size: 42px;
+	font-weight: normal;
+	width: 120px;
+	height: 70px;
+    line-height: 60px;
+    margin: auto;
+    text-align: center;
+    border: 0px;
+    transition: all 0.4s ease 0.1s;
+    opacity: 0.6;
+}
+
+button:active {
+    color: #ead06c;
+    font-family: 'Roboto Condensed';
+    font-size: 42px;
+	font-weight: normal;
 	background: black;
 	border: 5px solid #ead06c;
 	width: 120px;
 	height: 70px;
+	transition: all 0.05s ease 0.1s;
 	opacity: 0.8;
 }
 
