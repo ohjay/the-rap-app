@@ -61132,6 +61132,10 @@ for (var mobyword in mobypron) {
 }
 
 var lookup = function(word) {
-    var pronFields = mobypron[word].split(/\/+/);
-    return mobytrie.autoComplete(pronFields);
+    if (mobypron.hasOwnProperty(word)) {
+        var pronFields = mobypron[word].split(/\/+/);
+        return mobytrie.autoComplete(pronFields);
+    } else {
+        return [];
+    }
 };

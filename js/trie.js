@@ -48,7 +48,7 @@ Trie.prototype = {
             c;
             
         if (this.word != null) {
-            words.push(word);
+            words.push(this.word);
         }
         
         for (c in this.children) {
