@@ -2,7 +2,8 @@ var mobypron = {
 
     A: "/eI/",
 	a: "/eI/",
-	aa: "'/A//A/",	",	Aachen: "'/A/k/@/n",
+	aa: "'/A//A/",	
+    Aachen: "'/A/k/@/n",
 	Aalst: "/A/lst",
 	Aalto: "'/A/lt/O/",
 	Aar: "/A/r",
