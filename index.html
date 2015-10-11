@@ -25,7 +25,14 @@ function initMp3Player(){
     startbtn.addEventListener("click", start);
 
     function start() {
-        audio.play();
+        if (audio.paused) {
+            audio.play();
+            startbtn.innerHTML = "Stop";
+        } else {
+            audio.pause();
+            startbtn.innerHTML = "Start";
+        }
+        
     }
 
     context = new webkitAudioContext(); // AudioContext object instance
