@@ -6,6 +6,7 @@
     
     <link rel="stylesheet" href="css/style.css" />
     <link href=' http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+    
 <script>
 // Create a new instance of an audio object and adjust some of its properties
 var audio = new Audio();
@@ -18,7 +19,15 @@ var canvas, ctx, source, context, analyser, fbc_array, bars, bar_x, bar_width, b
 // Initialize the MP3 player after the page loads all of its HTML into the window
 window.addEventListener("load", initMp3Player, false);
 function initMp3Player(){
-    document.getElementById('audio_box').appendChild(audio);
+    //document.getElementById('audio_box').appendChild(audio);
+
+    startbtn = document.getElementById("start");
+    startbtn.addEventListener("click", start);
+
+    function start() {
+        audio.play();
+    }
+
     context = new webkitAudioContext(); // AudioContext object instance
     analyser = context.createAnalyser(); // AnalyserNode method
     canvas = document.getElementById('analyser_render');
