@@ -1,62 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<link rel="icon" href="images/dragonhead.ico">
     <title>The Rap App</title>
     
-    <link rel="stylesheet" href="css/style.css" />
-    <link href=' http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
-
+    <!-- Stylesheets -->
+    <!-- <link rel="stylesheet" href="css/style.css" /> -->
 </head>
-
-<body background="images/black-background-blend.png">
-	<!--
-	<p> </p>
-	<p> </p>
-	<p> Yeah, I learned the game from William Wesley you can never check me </p>
-	<p> ___ </p>
-	<p> Back to back for the n****s that didn't get the message </p>
-	<p> ___ </p>
-	<p> Back to back like I'm on the cover of Lethal Weapon </p>
-	<p> ___ </p>
-	<p> Back to back like I'm Jordan '96, '97 </p>
-	-->
-
-	<!-- Images -->
-	<div id="Drake">
-		<img src = "images/drake-black-background(newest).png" alt="Drake" height="280"/>
-	</div>
-
-	<div id="Cole">
-		<img src = "images/j-cole-black-background(new).png" alt="Cole" height="340"/>
-	</div>
-
-	<div id="Kanye">
-		<img src = "images/kanye-black-background.png" alt="Kanye" height="380"/>
-	</div>
-
-	<div id="Kendrick">
-		<img src = "images/kendrick-black-background(new).png" alt="Kendrick" height="260"/>
-	</div>
-
-    <p>
-        Hey, welcome to the Rap App! I'm just testing out some speech recognition stuff right now.
-        <div id="log"></div>
-        <div id="final-word"></div>
-        <div style="text-align: center">
-            <span id="typed"></span>
-        </div>
-    </p>
+<body>
+    <p>Hey, welcome to the Rap App! I'm just testing out some speech recognition stuff right now.</p>
+    <div id="log"></div>
+    <div id="final-word"></div>
     
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="js/typed.min.js"></script>
     <script>
         var newSpeechRecognition = function() {
             var r = new webkitSpeechRecognition();
             // r.interimResults = true;
             // r.continuous = true;
-        
+            
             r.onresult = function(event) {
                 /* Only the final word */
                 if (event.results[event.results.length - 1].isFinal) {
@@ -64,11 +26,11 @@
                             = "Final phrase: " + event.results[event.results.length - 1][0].transcript;
                     r.stop();
                 }
-            
+                
                 /* All words:
                 var final_transcript = '';
                 var interim_transcript = '';
-            
+                
                 for (var i = event.resultIndex; i < event.results.length; i++) {
                     if (event.results[i].isFinal) {
                         final_transcript += event.results[i][0].transcript;
@@ -77,32 +39,26 @@
                         interim_transcript += event.results[i][0].transcript;
                     }
                 }
-        
+            
                 document.getElementById("final-transcript").innerHTML = final_transcript;
                 document.getElementById("interim-transcript").innerHTML = interim_transcript; */
             };
-        
+            
             r.onerror = function(event) {
-                $('#log').text('[ERROR]: ' + event.error);
+                $('#log').text('[ERROR] Might want to check that.');
             };
-        
+            
             r.onend = function() { 
                 $('#log').text('It\'s over! It\'s all over!');
-                // recognition = newSpeechRecognition();
-                // recognition.start();
+                recognition = newSpeechRecognition();
+                recognition.start();
             };
-        
+            
             return r;
-        };
-    
+        }
+        
         var recognition = newSpeechRecognition();
         recognition.start();
-        
-        $("#typed").typed({
-            strings: ["Coconut strips and...", "^1000 banana chips."],
-            typeSpeed: 0,
-            backDelay: 500
-        });
     </script>
 </body>
 </html>
