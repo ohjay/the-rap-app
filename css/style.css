@@ -23,6 +23,7 @@ p, #log, #final-word, #rhymes {
     color: #ead06c;
     font-size: 18px;
     text-align: center;
+    z-index: 1;
 }
 
 #typed {
@@ -40,28 +41,28 @@ span {
     position: absolute;
     left: 10px;
     top: 360px;
-    z-index: -1;
+    cursor: pointer;
 }
 
 #Cole {
     position: absolute;
-    left: 760px;
+    right: 130px;
     top: 350px;
-    z-index: -1;
+    cursor: pointer;
 }
 
 #Kanye {
     position: absolute;
-    left: 890px;
+    right: 0px;
     top: -20px;
-    z-index: -1;
+    cursor: pointer;
 }
 
 #Kendrick {
     position: absolute;
     left: 10px;
     top: 50px;
-    z-index: -1;
+    cursor: pointer;
 }
 
 #start {
@@ -91,6 +92,7 @@ button {
     transition: all 0.2s ease 0.1s;
     cursor: pointer;
     outline: none;
+    z-index: 1;
 }
 
 button:hover {

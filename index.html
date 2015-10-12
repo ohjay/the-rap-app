@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style.css" />
     <link href=' http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
     
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>
         // Create a new instance of an audio object and adjust some of its properties
         var audio = new Audio();
@@ -59,6 +60,11 @@
                     audio.play();
                 }
             }
+            
+            $('#Drake').click(function() { beat('Drake'); });
+            $('#Cole').click(function() { beat('Kanye'); });
+            $('#Kanye').click(function() { beat('Kanye'); });
+            $('#Kendrick').click(function() { beat('Kendrick'); });
 
             context = new webkitAudioContext(); // AudioContext object instance
             analyser = context.createAnalyser(); // AnalyserNode method
@@ -109,21 +115,19 @@
 
 	<!-- Images -->
 	<div id="Drake">
-        <img src = "images/drake-black-background(newest).png" alt="Drake" height="280" onclick="beat('Drake')"/>
+        <img src = "images/drake-black-background(newest).png" alt="Drake" height="280"/>
     </div>
 
     <div id="Cole">
-        <img src = "images/j-cole-black-background(new).png" alt="Cole" height="340"
-        onclick="beat('Cole')"/>
+        <img src = "images/j-cole-black-background(new).png" alt="Cole" height="340"/>
     </div>
 
     <div id="Kanye">
-        <img src = "images/kanye-black-background.png" alt="Kanye" height="380"
-        onclick="beat('Kanye')"/>
+        <img src = "images/kanye-black-background.png" alt="Kanye" height="380"/>
     </div>
 
     <div id="Kendrick">
-        <img src = "images/kendrick-black-background(new).png" alt="Kendrick" height="260" onclick="beat('Kendrick')"/>
+        <img src = "images/kendrick-black-background(new).png" alt="Kendrick" height="260"/>
     </div>
 
     <p>
@@ -142,7 +146,6 @@
     </div>
     
     <!-- Scripts -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="js/typed.min.js"></script>
     <script src="js/trie.js"></script>
     <script src="js/mobypron.js"></script>
