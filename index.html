@@ -10,7 +10,7 @@
     <script>
         // Create a new instance of an audio object and adjust some of its properties
         var audio = new Audio();
-        audio.src = 'rap-app-instrumental/freestyle_rap.mp3';
+        audio.src = 'rap_app_instrumentals/freestyle_rap.mp3';
         audio.controls = true;
         audio.loop = true;
         audio.autoplay = false;
@@ -47,13 +47,13 @@
 
             function beat(name) {
                 if (name === "Kendrick") {
-                    audio.src = 'rap-app-instrumental/money_trees.mp3'
+                    audio.src = 'rap_app_instrumentals/money_trees.mp3';
                 } else if (name === "Drake") {
-                    audio.src = 'rap-app-instrumental/back_to_back.mp3'
+                    audio.src = 'rap_app_instrumentals/back_to_back.mp3';
                 } else if (name === "Cole") {
-                    audio.src = 'rap-app-instrumental/slow.mp3'
+                    audio.src = 'rap_app_instrumentals/slow.mp3';
                 } else if (name === "Kanye") {
-                    audio.src = 'rap-app-instrumental/medium'
+                    audio.src = 'rap_app_instrumentals/medium.mp3';
                 }
                 if (audio.paused) {
                     audio.play();
