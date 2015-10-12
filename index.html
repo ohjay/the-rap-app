@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<link rel="icon" href="images/dragonhead.ico">
+    <link rel="icon" href="images/dragonhead.ico">
     <title>The Rap App</title>
     
     <link rel="stylesheet" href="css/style.css" />
@@ -9,59 +9,62 @@
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>
-        // Create a new instance of an audio object and adjust some of its properties
+        // Song paths
+        var freestyleMP3 = 'rap_app_instrumentals/freestyle_rap.mp3',
+                moneyTreesMP3 = 'rap_app_instrumentals/money_trees.mp3',
+                backToBackMP3 = 'rap_app_instrumentals/back_to_back.mp3',
+                slowMP3 = 'rap_app_instrumentals/slow.mp3',
+                mediumMP3 = 'rap_app_instrumentals/medium.mp3';
+        
+        // Create a new Audio object and customize it a bit
         var audio = new Audio();
-        audio.src = 'rap_app_instrumentals/freestyle_rap.mp3';
+        audio.src = freestyleMP3;
         audio.controls = true;
         audio.loop = true;
         audio.autoplay = false;
-        // Establish all variables that your Analyser will use
+        
+        // Variables used by the Analyzer
         var canvas, ctx, source, context, analyser, fbc_array, bars, bar_x, bar_width, bar_height;
-        // Initialize the MP3 player after the page loads all of its HTML into the window
-        window.addEventListener("load", initMp3Player, false);
-        function initMp3Player(){
-            //document.getElementById('audio_box').appendChild(audio);
-
-            startbtn = document.getElementById("start");
-            startbtn.addEventListener("click", start);
+        
+        // Initialize the MP3 player after the page loads all of the HTML
+        window.addEventListener("load", initMP3Player, false);
+        
+        function initMP3Player() {
+            startButton = document.getElementById("start");
+            startButton.addEventListener("click", start);
 
             function start() {
                 if (audio.paused) {
                     audio.play();
-                    startbtn.innerHTML = '<button type="button">Stop</button>';
+                    startButton.innerHTML = '<button type="button">Stop</button>';
                 } else {
                     audio.pause();
-                    startbtn.innerHTML = '<button type="button">Start</button>';
+                    startButton.innerHTML = '<button type="button">Start</button>';
                 }
         
             }
 
-            // Kendrickbtn = document.getElementById("Kendrick");
-            // Drakebtn = document.getElementById("Drake");
-            // Colebtn = document.getElementById("Cole");
-            // Kanyebtn = document.getElementById("Kanye");
-
-            // Kendrickbtn.addEventListener("click", beat("Kendrick"));
-            // Drakebtn.addEventListener("click", beat("Drake"));
-            // Colebtn.addEventListener("click", beat("Cole"));
-            // Kanyebtn.addEventListener("click", beat("Kanye"));
-
             function beat(name) {
-                if (audio.src.indexOf('rap_app_instrumentals/freestyle_rap.mp3') == - 1) {
-                    audio.src = 'rap_app_instrumentals/freestyle_rap.mp3';
-                } else if (name === "Kendrick") {
-                    audio.src = 'rap_app_instrumentals/money_trees.mp3';
-                } else if (name === "Drake") {
-                    audio.src = 'rap_app_instrumentals/back_to_back.mp3';
-                } else if (name === "Cole") {
-                    audio.src = 'rap_app_instrumentals/slow.mp3';
-                } else if (name === "Kanye") {
-                    audio.src = 'rap_app_instrumentals/medium.mp3';
+                switch (name) {
+                    case "Kendrick":
+                        audio.src = (audio.src.indexOf(moneyTreesMP3) > -1) ? freestyleMP3 : moneyTreesMP3;
+                        break;
+                    case "Drake":
+                        audio.src = (audio.src.indexOf(backToBackMP3) > -1) ? freestyleMP3 : backToBackMP3;
+                        break;
+                    case "Cole":
+                        audio.src = (audio.src.indexOf(slowMP3) > -1) ? freestyleMP3 : slowMP3;
+                        break;
+                    case "Kanye":
+                        audio.src = (audio.src.indexOf(mediumMP3) > -1) ? freestyleMP3 : mediumMP3;
+                        break;
+                    default:
+                        audio.src = freestyleMP3;
                 }
                 
                 if (audio.paused) {
                     audio.play();
-                    startbtn.innerHTML = '<button type="button">Stop</button>'
+                    startButton.innerHTML = '<button type="button">Stop</button>'
                 }
             }
             
@@ -72,7 +75,7 @@
 
             context = new webkitAudioContext(); // AudioContext object instance
             analyser = context.createAnalyser(); // AnalyserNode method
-            canvas = document.getElementById('analyser_render');
+            canvas = document.getElementById('analyzer_render');
             ctx = canvas.getContext('2d');
             // Re-route audio playback into the processing graph of the AudioContext
             source = context.createMediaElementSource(audio); 
@@ -80,20 +83,20 @@
             analyser.connect(context.destination);
             frameLooper();
         }
+        
         // frameLooper() animates any style of graphics you wish to the audio frequency
-        // Looping at the default frame rate that the browser provides(approx. 60 FPS)
+        // Looping at the default frame rate that the browser provides (approx. 60 FPS)
         function frameLooper(){
             window.webkitRequestAnimationFrame(frameLooper);
             fbc_array = new Uint8Array(analyser.frequencyBinCount);
             analyser.getByteFrequencyData(fbc_array);
-            ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
-            ctx.fillStyle = '#00CCFF'; // Color of the bars
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // clear the canvas
+            ctx.fillStyle = '#00CCFF'; // color of the bars
             bars = 100;
             for (var i = 0; i < bars; i++) {
                 bar_x = i * 3;
                 bar_width = 2;
                 bar_height = -(fbc_array[i] / 2);
-                //  fillRect( x, y, width, height ) // Explanation of the parameters below
                 ctx.fillRect(bar_x, canvas.height, bar_width, bar_height);
             }
         }
@@ -103,19 +106,8 @@
 <body style="background-color: #000000">
     <div id="mp3_player">
       <div id="audio_box"></div>
-      <canvas id="analyser_render"></canvas>
+      <canvas id="analyzer_render"></canvas>
     </div>
-	<!--
-	<p> </p>
-	<p> </p>
-	<p> Yeah, I learned the game from William Wesley you can never check me </p>
-	<p> ___ </p>
-	<p> Back to back for the n****s that didn't get the message </p>
-	<p> ___ </p>
-	<p> Back to back like I'm on the cover of Lethal Weapon </p>
-	<p> ___ </p>
-	<p> Back to back like I'm Jordan '96, '97 </p>
-	-->
 
 	<!-- Images -->
 	<div id="Drake">
