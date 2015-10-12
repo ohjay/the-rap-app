@@ -10,7 +10,7 @@
     <script>
         // Create a new instance of an audio object and adjust some of its properties
         var audio = new Audio();
-        audio.src = 'rap-app-slow-instrumental-1.mp3';
+        audio.src = 'rap-app-instrumental/freestyle_rap.mp3';
         audio.controls = true;
         audio.loop = true;
         audio.autoplay = false;
@@ -33,6 +33,31 @@
                     startbtn.innerHTML = '<button type="button">Start</button>';
                 }
         
+            }
+
+            Kendrickbtn = document.getElementById("Kendrick");
+            Drakebtn = document.getElementById("Drake");
+            Colebtn = document.getElementById("Cole");
+            Kanyebtn = document.getElementById("Kanye");
+
+            Kendrickbtn.addEventListener("click", beat("Kendrick"));
+            Drakebtn.addEventListener("click", beat("Drake"));
+            Colebtn.addEventListener("click", beat("Cole"));
+            Kanyebtn.addEventListener("click", beat("Kanye"));
+
+            function beat(name) {
+                if (name === "Kendrick") {
+                    audio.src = 'rap-app-instrumental/money_trees.mp3'
+                } else if (name === "Drake") {
+                    audio.src = 'rap-app-instrumental/back_to_back.mp3'
+                } else if (name === "Cole") {
+                    audio.src = 'rap-app-instrumental/slow.mp3'
+                } else if (name === "Kanye") {
+                    audio.src = 'rap-app-instrumental/medium'
+                }
+                if (audio.paused) {
+                    audio.play();
+                }
             }
 
             context = new webkitAudioContext(); // AudioContext object instance
