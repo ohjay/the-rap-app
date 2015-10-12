@@ -11,7 +11,9 @@ for (var mobyword in mobypron) {
 var lookup = function(word) {
     if (mobypron.hasOwnProperty(word)) {
         var pronFields = mobypron[word].split(/\/+/);
-        if (pronFields.length > 2) {
+        if (pronFields.length > 4) {
+            pronFields.splice(0, pronFields.length - 3);
+        } else if (pronFields.length > 2) {
             pronFields.splice(0, pronFields.length - 2);
         }
         
