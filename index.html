@@ -35,15 +35,15 @@
         
             }
 
-            Kendrickbtn = document.getElementById("Kendrick");
-            Drakebtn = document.getElementById("Drake");
-            Colebtn = document.getElementById("Cole");
-            Kanyebtn = document.getElementById("Kanye");
+            // Kendrickbtn = document.getElementById("Kendrick");
+            // Drakebtn = document.getElementById("Drake");
+            // Colebtn = document.getElementById("Cole");
+            // Kanyebtn = document.getElementById("Kanye");
 
-            Kendrickbtn.addEventListener("click", beat("Kendrick"));
-            Drakebtn.addEventListener("click", beat("Drake"));
-            Colebtn.addEventListener("click", beat("Cole"));
-            Kanyebtn.addEventListener("click", beat("Kanye"));
+            // Kendrickbtn.addEventListener("click", beat("Kendrick"));
+            // Drakebtn.addEventListener("click", beat("Drake"));
+            // Colebtn.addEventListener("click", beat("Cole"));
+            // Kanyebtn.addEventListener("click", beat("Kanye"));
 
             function beat(name) {
                 if (name === "Kendrick") {
@@ -109,20 +109,22 @@
 
 	<!-- Images -->
 	<div id="Drake">
-		<img src = "images/drake-black-background(newest).png" alt="Drake" height="280"/>
-	</div>
+        <img src = "images/drake-black-background(newest).png" alt="Drake" height="280" onclick="beat("Drake")"/>
+    </div>
 
-	<div id="Cole">
-		<img src = "images/j-cole-black-background(new).png" alt="Cole" height="340"/>
-	</div>
+    <div id="Cole">
+        <img src = "images/j-cole-black-background(new).png" alt="Cole" height="340"
+        onclick="beat("Cole")"/>
+    </div>
 
-	<div id="Kanye">
-		<img src = "images/kanye-black-background.png" alt="Kanye" height="380"/>
-	</div>
+    <div id="Kanye">
+        <img src = "images/kanye-black-background.png" alt="Kanye" height="380"
+        onclick="beat("Kanye")"/>
+    </div>
 
-	<div id="Kendrick">
-		<img src = "images/kendrick-black-background(new).png" alt="Kendrick" height="260"/>
-	</div>
+    <div id="Kendrick">
+        <img src = "images/kendrick-black-background(new).png" alt="Kendrick" height="260" onclick="beat("Kendrick")"/>
+    </div>
 
     <p>
         Hey, welcome to the Rap App! I'm just testing out some speech recognition stuff right now.
