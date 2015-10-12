@@ -47,7 +47,7 @@
             // Kanyebtn.addEventListener("click", beat("Kanye"));
 
             function beat(name) {
-                if (audio.src !== 'rap_app_instrumentals/freestyle_rap.mp3') {
+                if (audio.src.indexOf('rap_app_instrumentals/freestyle_rap.mp3') == - 1) {
                     audio.src = 'rap_app_instrumentals/freestyle_rap.mp3';
                 } else if (name === "Kendrick") {
                     audio.src = 'rap_app_instrumentals/money_trees.mp3';
@@ -58,6 +58,7 @@
                 } else if (name === "Kanye") {
                     audio.src = 'rap_app_instrumentals/medium.mp3';
                 }
+                
                 if (audio.paused) {
                     audio.play();
                     startbtn.innerHTML = '<button type="button">Stop</button>'
