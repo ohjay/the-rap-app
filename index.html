@@ -47,7 +47,9 @@
             // Kanyebtn.addEventListener("click", beat("Kanye"));
 
             function beat(name) {
-                if (name === "Kendrick") {
+                if (audio.src != 'rap_app_instrumentals/freestyle_rap.mp3') {
+                    audio.src = 'rap_app_instrumentals/freestyle_rap.mp3';
+                } else if (name === "Kendrick") {
                     audio.src = 'rap_app_instrumentals/money_trees.mp3';
                 } else if (name === "Drake") {
                     audio.src = 'rap_app_instrumentals/back_to_back.mp3';
@@ -58,11 +60,12 @@
                 }
                 if (audio.paused) {
                     audio.play();
+                    startbtn.innerHTML = '<button type="button">Stop</button>'
                 }
             }
             
             $('#Drake').click(function() { beat('Drake'); });
-            $('#Cole').click(function() { beat('Kanye'); });
+            $('#Cole').click(function() { beat('Cole'); });
             $('#Kanye').click(function() { beat('Kanye'); });
             $('#Kendrick').click(function() { beat('Kendrick'); });
 
