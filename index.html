@@ -109,8 +109,8 @@
       <canvas id="analyzer_render"></canvas>
     </div>
 
-	<!-- Images -->
-	<div id="Drake">
+    <!-- Images -->
+    <div id="Drake">
         <img src = "images/drake-black-background(newest).png" alt="Drake" height="280"/>
     </div>
 
@@ -130,7 +130,6 @@
         Hey, welcome to the Rap App! I'm just testing out some speech recognition stuff right now.
         <div id="log"></div>
         <div id="final-word"></div>
-        <div id="rhymes"></div>
         <div style="text-align: center">
             <span id="typed"></span>
         </div>
@@ -148,12 +147,6 @@
     <script src="js/rhyme_lookup.js"></script>
     <script>
         var newSpeechRecognition = function() {
-            $("#typed").typed({
-                strings: ["Coconut strips and...", "^1000 banana chips."],
-                typeSpeed: 0,
-                backDelay: 500
-            });
-            
             var r = new webkitSpeechRecognition();
             // r.interimResults = true;
             // r.continuous = true;
@@ -165,7 +158,14 @@
                     var finalWord = finalPhrase.substring(finalPhrase.lastIndexOf(' ') + 1);
                     
                     document.getElementById("final-word").innerHTML = "You said: " + finalPhrase;
-                    document.getElementById("rhymes").innerHTML = "Rhymes: " + lookup(finalWord).toString();
+                    $("#typed").removeClass("new");
+                    $("#typed").addClass("new");
+                    $(".new").typed({
+                        strings: ["Rhymes: " + lookup(finalWord).toString()],
+                        typeSpeed: 0,
+                        backDelay: 500
+                    });
+                    
                     r.stop();
                 }
             

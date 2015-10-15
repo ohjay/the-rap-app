@@ -1,3 +1,8 @@
+// A function that transforms words into their associated IPA format
+var getIPAForm = function(word) {
+    /* Insert clever stuff here */
+};
+
 var mobytrie = new Trie();
 
 // Populate the mobypron trie

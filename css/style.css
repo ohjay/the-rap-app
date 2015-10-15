@@ -18,7 +18,7 @@ h1 {
     font-weight: normal;
 }
 
-p, #log, #final-word, #rhymes {
+p, #log, #final-word {
     font-family: 'Roboto Condensed';
     color: #ead06c;
     font-size: 18px;
