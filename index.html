@@ -92,18 +92,22 @@
             function beat(name) {
                 switch (name) {
                     case "Kendrick":
+                        $('#directive').text("If I'm gonna tell a real story, I'm gonna start with my name.");
                         audio.src = (audio.src.indexOf(moneyTreesMP3) > -1) ? 
                                 freestyleMP3 : moneyTreesMP3;
                         break;
                     case "Drake":
+                        $('#directive').text("My pain, you can experience through the rhyming, boy.");
                         audio.src = (audio.src.indexOf(backToBackMP3) > -1) ? 
                                 freestyleMP3 : backToBackMP3;
                         break;
                     case "Cole":
+                        $('#directive').text("This is my canvas... I'mma paint it how I want it, baby.");
                         audio.src = (audio.src.indexOf(slowMP3) > -1) ? 
                                 freestyleMP3 : slowMP3;
                         break;
                     case "Kanye":
+                        $('#directive').text("Who else you know been hot this long?");
                         audio.src = (audio.src.indexOf(mediumMP3) > -1) ? 
                                 freestyleMP3 : mediumMP3;
                         break;
@@ -196,7 +200,7 @@
             };
         
             r.onerror = function(event) {
-                $('#directive').text('[SPEECH RECOGNITION ERROR] : ' + event.error);
+                //$('#directive').text('[SPEECH RECOGNITION ERROR] : ' + event.error);
             };
         
             r.onend = function() {

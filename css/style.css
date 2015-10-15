@@ -31,6 +31,11 @@ span {
     margin-right: auto;
 }
 
+#directive {
+    border-top: 2px solid #ead06c;
+    padding-top: 7.5px;
+}
+
 #typed {
     font-family: 'Roboto Condensed';
     color: #ead06c;
