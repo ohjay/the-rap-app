@@ -25,16 +25,6 @@ var lookup = function(word) {
         var results = mobytrie.autoComplete(pronFields);
         if (results.length == 0) { return []; }
         
-        /* // Get the shortest word from results
-        var shortestWord = results[0];
-        var longestWord = null;
-        for (var i = 1; i < results.length; i++) {
-            var r = results[i];
-            if (r.length < shortestWord.length || Math.random() > 0.42) {
-                shortestWord = r;
-            }
-        } */
-        
         // Return a random word from results
         return [results[Math.floor(Math.random() * results.length)]];
     } else {

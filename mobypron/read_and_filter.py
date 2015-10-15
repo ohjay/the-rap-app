@@ -12,6 +12,5 @@ for line in content:
 		target.write(str(line) + '\n')
 		print(line)
 
-
 rap_list.close()
 target.close()

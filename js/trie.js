@@ -3,8 +3,7 @@
  * That implementation can be found here: http://odhyan.com/blog/2010/11/trie-implementation-in-javascript/.
  * Optimized for IPA field insertion and reverse string lookup.
  * 
- * Original author: Saurabh Odhyan
- * Chronologically subsequent author: Owen Jow
+ * Author: Owen Jow
  * Date: Oct 11, 2015 [shoutout to Cal Hacks!]
  */
 

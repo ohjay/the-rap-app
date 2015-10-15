@@ -1,13 +1,12 @@
 @font-face {
-  font-family: aight;
-  src: local("aight"),
-       local("aight"),
-       url(aight.ttf);
-  font-weight: bold;
+    font-family: aight;
+    src: local("aight"),
+         local("aight"),
+         url(aight.ttf);
+    font-weight: bold;
 }
 
-div#mp3_player{ width:500px; height:60px; background:#000; padding:5px; margin:50px auto; }
-/*div#mp3_player > div > aud3o{  width:500px; background:#000; float:left;  } */
+div#mp3_player { width:500px; height:60px; background:#000; padding:5px; margin:50px auto; }
 div#mp3_player > canvas{ width:500px; height:50px; background:#000000; float:left; }
 
 h1 {
@@ -26,39 +25,39 @@ p, #log, #final-word {
     z-index: 1;
 }
 
+span {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #typed {
     font-family: 'Roboto Condensed';
     color: #ead06c;
     font-size: 70px;
 }
 
-span {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#Drake {
+#drake {
     position: absolute;
     left: 10px;
     top: 360px;
     cursor: pointer;
 }
 
-#Cole {
+#cole {
     position: absolute;
-    right: 130px;
+    right: 121px;
     top: 350px;
     cursor: pointer;
 }
 
-#Kanye {
+#kanye {
     position: absolute;
     right: 0px;
     top: -20px;
     cursor: pointer;
 }
 
-#Kendrick {
+#kendrick {
     position: absolute;
     left: 10px;
     top: 50px;

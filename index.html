@@ -41,22 +41,25 @@
                     audio.pause();
                     startButton.innerHTML = '<button type="button">Start</button>';
                 }
-        
             }
 
             function beat(name) {
                 switch (name) {
                     case "Kendrick":
-                        audio.src = (audio.src.indexOf(moneyTreesMP3) > -1) ? freestyleMP3 : moneyTreesMP3;
+                        audio.src = (audio.src.indexOf(moneyTreesMP3) > -1) ? 
+                                freestyleMP3 : moneyTreesMP3;
                         break;
                     case "Drake":
-                        audio.src = (audio.src.indexOf(backToBackMP3) > -1) ? freestyleMP3 : backToBackMP3;
+                        audio.src = (audio.src.indexOf(backToBackMP3) > -1) ? 
+                                freestyleMP3 : backToBackMP3;
                         break;
                     case "Cole":
-                        audio.src = (audio.src.indexOf(slowMP3) > -1) ? freestyleMP3 : slowMP3;
+                        audio.src = (audio.src.indexOf(slowMP3) > -1) ? 
+                                freestyleMP3 : slowMP3;
                         break;
                     case "Kanye":
-                        audio.src = (audio.src.indexOf(mediumMP3) > -1) ? freestyleMP3 : mediumMP3;
+                        audio.src = (audio.src.indexOf(mediumMP3) > -1) ? 
+                                freestyleMP3 : mediumMP3;
                         break;
                     default:
                         audio.src = freestyleMP3;
@@ -68,10 +71,10 @@
                 }
             }
             
-            $('#Drake').click(function() { beat('Drake'); });
-            $('#Cole').click(function() { beat('Cole'); });
-            $('#Kanye').click(function() { beat('Kanye'); });
-            $('#Kendrick').click(function() { beat('Kendrick'); });
+            $('#drake').click(function() { beat('Drake'); });
+            $('#cole').click(function() { beat('Cole'); });
+            $('#kanye').click(function() { beat('Kanye'); });
+            $('#kendrick').click(function() { beat('Kendrick'); });
 
             context = new webkitAudioContext(); // AudioContext object instance
             analyser = context.createAnalyser(); // AnalyserNode method
@@ -110,19 +113,19 @@
     </div>
 
     <!-- Images -->
-    <div id="Drake">
+    <div id="drake">
         <img src = "images/drake-black-background(newest).png" alt="Drake" height="280"/>
     </div>
 
-    <div id="Cole">
+    <div id="cole">
         <img src = "images/j-cole-black-background(new).png" alt="Cole" height="340"/>
     </div>
 
-    <div id="Kanye">
+    <div id="kanye">
         <img src = "images/kanye-black-background.png" alt="Kanye" height="380"/>
     </div>
 
-    <div id="Kendrick">
+    <div id="kendrick">
         <img src = "images/kendrick-black-background(new).png" alt="Kendrick" height="260"/>
     </div>
 
@@ -148,8 +151,6 @@
     <script>
         var newSpeechRecognition = function() {
             var r = new webkitSpeechRecognition();
-            // r.interimResults = true;
-            // r.continuous = true;
         
             r.onresult = function(event) {
                 /* Only the final word */
@@ -168,22 +169,6 @@
                     
                     r.stop();
                 }
-            
-                /* All words:
-                var final_transcript = '';
-                var interim_transcript = '';
-            
-                for (var i = event.resultIndex; i < event.results.length; i++) {
-                    if (event.results[i].isFinal) {
-                        final_transcript += event.results[i][0].transcript;
-                        r.stop();
-                    } else {
-                        interim_transcript += event.results[i][0].transcript;
-                    }
-                }
-        
-                document.getElementById("final-transcript").innerHTML = final_transcript;
-                document.getElementById("interim-transcript").innerHTML = interim_transcript; */
             };
         
             r.onerror = function(event) {
