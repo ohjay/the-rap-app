@@ -1,4 +1,5 @@
 // A function that transforms words into their associated IPA format
+// i.e. mapping is English word --> IPA
 var getIPAForm = function(word) {
     /* Insert clever stuff here */
 };

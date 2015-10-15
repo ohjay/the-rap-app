@@ -6,7 +6,46 @@
     
     <link rel="stylesheet" href="css/style.css" />
     <link href=' http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+</head>
+
+<body style="background-color: #000000">
+    <div id="mp3_player">
+        <div id="audio_box"></div>
+        <canvas id="analyzer_render"></canvas>
+    </div>
+
+    <!-- Images -->
+    <div id="drake">
+        <img src = "images/drake-black-background(newest).png" alt="Drake" height="280"/>
+    </div>
+
+    <div id="cole">
+        <img src = "images/j-cole-black-background(new).png" alt="Cole" height="340"/>
+    </div>
+
+    <div id="kanye">
+        <img src = "images/kanye-black-background.png" alt="Kanye" height="380"/>
+    </div>
+
+    <div id="kendrick">
+        <img src = "images/kendrick-black-background(new).png" alt="Kendrick" height="260"/>
+    </div>
+
+    <p>
+        Hey, welcome to the Rap App! I'm just testing out some speech recognition stuff right now.
+        <div id="log"></div>
+        <div id="final-word"></div>
+        <div style="text-align: center">
+            <span id="typed"></span>
+        </div>
+    </p>
+
+    <!-- Buttons -->
+    <div id="start">
+    	<button type="button">Start</button>
+    </div>
     
+    <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>
         // Song paths
@@ -104,51 +143,35 @@
             }
         }
     </script>
-</head>
-
-<body style="background-color: #000000">
-    <div id="mp3_player">
-      <div id="audio_box"></div>
-      <canvas id="analyzer_render"></canvas>
-    </div>
-
-    <!-- Images -->
-    <div id="drake">
-        <img src = "images/drake-black-background(newest).png" alt="Drake" height="280"/>
-    </div>
-
-    <div id="cole">
-        <img src = "images/j-cole-black-background(new).png" alt="Cole" height="340"/>
-    </div>
-
-    <div id="kanye">
-        <img src = "images/kanye-black-background.png" alt="Kanye" height="380"/>
-    </div>
-
-    <div id="kendrick">
-        <img src = "images/kendrick-black-background(new).png" alt="Kendrick" height="260"/>
-    </div>
-
-    <p>
-        Hey, welcome to the Rap App! I'm just testing out some speech recognition stuff right now.
-        <div id="log"></div>
-        <div id="final-word"></div>
-        <div style="text-align: center">
-            <span id="typed"></span>
-        </div>
-    </p>
-
-    <!-- Buttons -->
-    <div id="start">
-    	<button type="button">Start</button>
-    </div>
-    
-    <!-- Scripts -->
     <script src="js/typed.min.js"></script>
     <script src="js/trie.js"></script>
     <script src="js/mobypron.js"></script>
     <script src="js/rhyme_lookup.js"></script>
     <script>
+        var currentID = Number.MIN_SAFE_INTEGER;
+        var rhymes = ["Just start rapping!^2000"];
+        var updated = false;
+        
+        var newTyped = function(idStr) {
+            $("#sos" + idStr).typed({
+                strings: rhymes,
+                typeSpeed: 0,
+                backDelay: 500,
+                callback: function() {
+                    if (!updated) {
+                        rhymes = ["...^2000"];
+                    } else {
+                        updated = false;
+                    }
+                    
+                    currentID += 1;
+                    currIDStr = currentID.toString();
+                    document.getElementById("typed").innerHTML = '<span id="sos' + currIDStr + '"></span>';
+                    newTyped(currIDStr);
+                }
+            });
+        }
+        
         var newSpeechRecognition = function() {
             var r = new webkitSpeechRecognition();
         
@@ -159,14 +182,8 @@
                     var finalWord = finalPhrase.substring(finalPhrase.lastIndexOf(' ') + 1);
                     
                     document.getElementById("final-word").innerHTML = "You said: " + finalPhrase;
-                    $("#typed").removeClass("new");
-                    $("#typed").addClass("new");
-                    $(".new").typed({
-                        strings: ["Rhymes: " + lookup(finalWord).toString()],
-                        typeSpeed: 0,
-                        backDelay: 500
-                    });
-                    
+                    rhymes = ["Rhymes: " + lookup(finalWord).toString() + "^2000"];
+                    updated = true;
                     r.stop();
                 }
             };
@@ -185,6 +202,9 @@
     
         var recognition = newSpeechRecognition();
         recognition.start();
+        
+        document.getElementById("typed").innerHTML = '<span id="sos' + currentID.toString() + '"></span>';
+        newTyped(currentID.toString());
     </script>
 </body>
 </html>
