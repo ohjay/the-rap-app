@@ -17,12 +17,13 @@ h1 {
     font-weight: normal;
 }
 
-p, #log, #final-word {
+p, #final-word {
     font-family: 'Roboto Condensed';
     color: #ead06c;
-    font-size: 18px;
+    font-size: 21px;
     text-align: center;
     z-index: 1;
+    margin-left: 7.5px;
 }
 
 span {
@@ -34,6 +35,7 @@ span {
     font-family: 'Roboto Condensed';
     color: #ead06c;
     font-size: 70px;
+    margin-left: 10px; /* otherwise the cursor makes it look a little off-center */
 }
 
 #drake {

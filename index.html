@@ -5,7 +5,7 @@
     <title>The Rap App</title>
     
     <link rel="stylesheet" href="css/style.css" />
-    <link href=' http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
 </head>
 
 <body style="background-color: #000000">
@@ -32,8 +32,7 @@
     </div>
 
     <p>
-        Hey, welcome to the Rap App! I'm just testing out some speech recognition stuff right now.
-        <div id="log"></div>
+        <span id="directive">Hey, welcome to the Rap App! To play some sick beats, click START.</span>
         <div id="final-word"></div>
         <div style="text-align: center">
             <span id="typed"></span>
@@ -68,15 +67,23 @@
         // Initialize the MP3 player after the page loads all of the HTML
         window.addEventListener("load", initMP3Player, false);
         
+        var timesStarted = 0;
         function initMP3Player() {
             startButton = document.getElementById("start");
             startButton.addEventListener("click", start);
 
             function start() {
                 if (audio.paused) {
+                    if (++timesStarted > 2) {
+                        $('#directive').text("You know what to do, bro. Show 'em what you've got.");
+                    } else {
+                        $('#directive').text("You best be spitting some savage lines right now.");
+                    }
+                    
                     audio.play();
                     startButton.innerHTML = '<button type="button">Stop</button>';
                 } else {
+                    $('#directive').text("What!? Don't be quitting on me, man.");
                     audio.pause();
                     startButton.innerHTML = '<button type="button">Start</button>';
                 }
@@ -176,20 +183,20 @@
             var r = new webkitSpeechRecognition();
         
             r.onresult = function(event) {
-                /* Only the final word */
+                // Only the final word
                 if (event.results[event.results.length - 1].isFinal) {
                     var finalPhrase = event.results[event.results.length - 1][0].transcript;
                     var finalWord = finalPhrase.substring(finalPhrase.lastIndexOf(' ') + 1);
                     
                     document.getElementById("final-word").innerHTML = "You said: " + finalPhrase;
-                    rhymes = ["Rhymes: " + lookup(finalWord).toString() + "^2000"];
+                    rhymes = ["Rhymes: " + lookup(finalWord).toString() + "^3000"];
                     updated = true;
                     r.stop();
                 }
             };
         
             r.onerror = function(event) {
-                $('#log').text('[ERROR]: ' + event.error);
+                $('#directive').text('[SPEECH RECOGNITION ERROR] : ' + event.error);
             };
         
             r.onend = function() {

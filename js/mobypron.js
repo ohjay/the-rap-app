@@ -35463,7 +35463,6 @@ var mobypron = {
 	mantle: "'m/&/nt/-/l",
 	mantlet: "'m/&/ntl/I/t",
 	mantling: "'m/&/ntl/I//N/",
-	Manto: "'m/&/nt/oU/",
 	mantra: "'m/&/ntr/@/",
 	mantram: "'m/&/ntr/@/m",
 	mantrap: "'m/&/ntr/&/p",
