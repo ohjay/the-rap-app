@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="css/style.css" />
     <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
 </head>
-
 <body style="background-color: #000000">
     <div id="mp3_player">
         <div id="audio_box"></div>
@@ -161,7 +160,6 @@
     <script>
         var currentID = Number.MIN_SAFE_INTEGER;
         var rhymes = ["Just start rapping!^2000"];
-        var updated = false;
         
         var newTyped = function(idStr) {
             $("#sos" + idStr).typed({
@@ -169,11 +167,7 @@
                 typeSpeed: 0,
                 backDelay: 500,
                 callback: function() {
-                    if (!updated) {
-                        rhymes = ["...^2000"];
-                    } else {
-                        updated = false;
-                    }
+                    rhymes = ["...^5000"];
                     
                     currentID += 1;
                     currIDStr = currentID.toString();
@@ -193,8 +187,13 @@
                     var finalWord = finalPhrase.substring(finalPhrase.lastIndexOf(' ') + 1);
                     
                     document.getElementById("final-word").innerHTML = "You said: " + finalPhrase;
+                    
+                    // Set the animated typing to the newfound rhyme
                     rhymes = ["Rhymes: " + lookup(finalWord).toString() + "^3000"];
-                    updated = true;
+                    currIDStr = (++currentID).toString();
+                    document.getElementById("typed").innerHTML = '<span id="sos' + currIDStr + '"></span>';
+                    newTyped(currIDStr);
+                    
                     r.stop();
                 }
             };
