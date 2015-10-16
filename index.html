@@ -14,25 +14,14 @@
     </div>
 
     <!-- Images -->
-    <div id="drake">
-        <img src = "images/drake-black-background(newest).png" alt="Drake" height="280"/>
-    </div>
-
-    <div id="cole">
-        <img src = "images/j-cole-black-background(new).png" alt="Cole" height="340"/>
-    </div>
-
-    <div id="kanye">
-        <img src = "images/kanye-black-background.png" alt="Kanye" height="380"/>
-    </div>
-
-    <div id="kendrick">
-        <img src = "images/kendrick-black-background(new).png" alt="Kendrick" height="260"/>
-    </div>
+    <img id="drake" src = "images/drake-black-background(newest).png" alt="Drake" height="280"/>
+    <img id="cole" src = "images/j-cole-black-background(new).png" alt="Cole" height="340"/>
+    <img id="kanye" src = "images/kanye-black-background.png" alt="Kanye" height="380"/>
+    <img id="kendrick" src = "images/kendrick-black-background(new).png" alt="Kendrick" height="260"/>
 
     <p>
         <span id="directive">Hey, welcome to the Rap App! To play some sick beats, click START.</span>
-        <div id="final-word"></div>
+        <div id="final-word">[ <i>Say something, please!</i> ]</div>
         <div style="text-align: center">
             <span id="typed"></span>
         </div>
@@ -160,6 +149,7 @@
     <script>
         var currentID = Number.MIN_SAFE_INTEGER;
         var rhymes = ["Just start rapping!^2000"];
+        var updated = false;
         
         var newTyped = function(idStr) {
             $("#sos" + idStr).typed({
@@ -167,7 +157,11 @@
                 typeSpeed: 0,
                 backDelay: 500,
                 callback: function() {
-                    rhymes = ["...^5000"];
+                    if (!updated) {
+                        rhymes = ["...^2000"];
+                    } else {
+                        updated = false;
+                    }
                     
                     currentID += 1;
                     currIDStr = currentID.toString();
@@ -186,20 +180,15 @@
                     var finalPhrase = event.results[event.results.length - 1][0].transcript;
                     var finalWord = finalPhrase.substring(finalPhrase.lastIndexOf(' ') + 1);
                     
-                    document.getElementById("final-word").innerHTML = "You said: " + finalPhrase;
-                    
-                    // Set the animated typing to the newfound rhyme
+                    document.getElementById("final-word").innerHTML = "[ Your previous line: <i>" + finalPhrase + "</i> ]";
                     rhymes = ["Rhymes: " + lookup(finalWord).toString() + "^3000"];
-                    currIDStr = (++currentID).toString();
-                    document.getElementById("typed").innerHTML = '<span id="sos' + currIDStr + '"></span>';
-                    newTyped(currIDStr);
-                    
+                    updated = true;
                     r.stop();
                 }
             };
         
             r.onerror = function(event) {
-                //$('#directive').text('[SPEECH RECOGNITION ERROR] : ' + event.error);
+                $('#directive').text('[SPEECH RECOGNITION ERROR] : ' + event.error);
             };
         
             r.onend = function() {
