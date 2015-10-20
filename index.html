@@ -181,7 +181,16 @@
                     var finalWord = finalPhrase.substring(finalPhrase.lastIndexOf(' ') + 1);
                     
                     document.getElementById("final-word").innerHTML = "[ Your previous line: <i>" + finalPhrase + "</i> ]";
-                    rhymes = ["Rhymes: " + lookup(finalWord).toString() + "^3000"];
+                    
+                    // Easter eggs + rhymes (this is where we'll set the response text)
+                    if (finalPhrase.indexOf("Oliver") > -1) {
+                        rhymes = ["Hi, Oliver. How goes it?^3000"];
+                    } else if (finalPhrase.indexOf("cigar") > -1) {
+                        rhymes = ["Cigar? ...or SAGANG?^3000"];
+                    } else {
+                        rhymes = ["Rhymes: " + lookup(finalWord).toString() + "^3000"];
+                    }
+                    
                     updated = true;
                     r.stop();
                 }
