@@ -67,9 +67,9 @@ button {
     color: black;
     font-family: 'Roboto Condensed';
     font-size: 42px;
-	font-weight: normal;
-	width: 120px;
-	height: 70px;
+    font-weight: normal;
+    width: 120px;
+    height: 70px;
     line-height: 60px;
     margin: auto;
     text-align: center;
@@ -82,13 +82,13 @@ button {
 }
 
 button:hover {
-	background: #ead06c;
+    background: #ead06c;
     color: black;
     font-family: 'Roboto Condensed';
     font-size: 42px;
-	font-weight: normal;
-	width: 120px;
-	height: 70px;
+    font-weight: normal;
+    width: 120px;
+    height: 70px;
     line-height: 60px;
     margin: auto;
     text-align: center;
@@ -101,19 +101,19 @@ button:active {
     color: #ead06c;
     font-family: 'Roboto Condensed';
     font-size: 42px;
-	font-weight: normal;
-	background: black;
-	border: 5px solid #ead06c;
-	width: 120px;
-	height: 70px;
-	transition: all 0.05s ease 0.1s;
-	opacity: 0.8;
+    font-weight: normal;
+    background: black;
+    border: 5px solid #ead06c;
+    width: 120px;
+    height: 70px;
+    transition: all 0.05s ease 0.1s;
+    opacity: 0.8;
 }
 
 div p {
-	font-family: 'Roboto Condensed';
-	color: #ead06c;
-	font-size: 36px;
+    font-family: 'Roboto Condensed';
+    color: #ead06c;
+    font-size: 36px;
 }
 
 .typed-cursor {
@@ -167,12 +167,12 @@ div p {
 }
 
 #start {
-	height: 50px;
-	border-radius: 1px;
-	border: 0px solid #ead06c;
-	width: 120px;
-	height: 70px;
-	margin: auto;
-	margin-top: 130px;
-	text-align: center;
+    height: 50px;
+    border-radius: 1px;
+    border: 0px solid #ead06c;
+    width: 120px;
+    height: 70px;
+    margin: auto;
+    margin-top: 130px;
+    text-align: center;
 }

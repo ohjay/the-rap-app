@@ -58,6 +58,25 @@ Trie.prototype = {
     },
     
     /*
+     * Gets a single word from the trie (the first one it finds).
+     */
+    getOneWord: function() {
+        if (this.word != null) {
+            return this.word;
+        } else {
+            var word = null;
+            for (c in this.children) {
+                word = this.children[c].getOneWord();
+                if (word != null) {
+                    break;
+                }
+            }
+            
+            return word;
+        }
+    },
+    
+    /*
      * Autocompletes the given suffix.
      * 
      * @param {Array} fields An array of IPA fields to serve as a suffix (in order!)
@@ -76,6 +95,26 @@ Trie.prototype = {
         } else {
             fields.pop();
             return child.autoComplete(fields);
+        }
+    },
+    
+    /*
+     * Returns an approximation of the given word.
+     * It is assumed that the word does not already exist in the trie;
+     * thus, this function works by following the characters of the word
+     * (starting from the end) through the trie – and when it reaches a dead end,
+     * it returns an approximation from th set of all of the dead end node's children.
+     * 
+     * @param {Array} charArray An array of characters to follow
+     * @return {String} An approximation of the word specified by CHAR_ARRAY
+     */
+    getApproximation: function(charArray) {
+        child = this.children[charArray[charArray.length - 1]];
+        if (child === undefined) {
+            return this.getOneWord();
+        } else {
+            charArray.pop();
+            return child.getApproximation(charArray);
         }
     }
 };
