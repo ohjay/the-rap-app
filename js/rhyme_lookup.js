@@ -40,7 +40,8 @@ var fromTrie = function(pronFields) {
 }
 
 /*
- * Like fromTrie, except an "s" will automatically be appended to the resulting rhyme.
+ * Like fromTrie, but with the additional guarantee 
+ * that an 's' will automatically be appended to the resulting rhyme.
  */
 var pluralFromTrie = function(pronFields) {
     var rhyme = fromTrie(pronFields);
@@ -72,7 +73,7 @@ var lookup = function(word) {
         if (approximation == null && word.slice(-1) === "s") { // plurality case
             approximation = wordTrie.getApproximation(singular.split(''));
             if (approximation == null) {
-                return ["grandmother clock"];
+                return ["grandmother clocks"];
             } else {
                 return pluralFromTrie(mobypron[approximation].split(/\/+/));
             }

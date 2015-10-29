@@ -1,11 +1,3 @@
-@font-face {
-    font-family: aight;
-    src: local("aight"),
-         local("aight"),
-         url(aight.ttf);
-    font-weight: bold;
-}
-
 @keyframes blink {
     0% { opacity:1; }
     50% { opacity:0; }
@@ -38,14 +30,6 @@ div#mp3_player > canvas {
     height: 50px; 
     background: #000000; 
     float: left; 
-}
-
-h1 {
-    font-family: 'aight';
-    color: #ead06c;
-    font-size: 65px;
-    text-align: center;
-    font-weight: normal;
 }
 
 p, #final-word {
