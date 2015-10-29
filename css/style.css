@@ -160,3 +160,17 @@ div p {
     margin-top: 130px;
     text-align: center;
 }
+
+#mobi-drake {
+    position: absolute;
+    top: 600px !important;
+    left: 0;
+    z-index: -1;
+}
+
+#mobi-cole {
+    position: absolute;
+    top: 585px !important;
+    right: 0;
+    z-index: -1;
+}

@@ -34,10 +34,12 @@
     	<button type="button">Start</button>
     </div>
     
+    <div id="mobi-drake"></div>
+    <div id="mobi-cole"></div>
+    
     <!-- [ END MAIN BODY ] -->
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="js/script.js"></script>
     <script>
         // Song paths
         var freestyleMP3 = 'rap_app_instrumentals/freestyle_rap.mp3',
@@ -58,6 +60,43 @@
         
         // Initialize the MP3 player after the page loads all of the HTML
         window.addEventListener("load", initMP3Player, false);
+        
+        function beat(name) {
+            switch (name) {
+                case "Kendrick":
+                    $('#directive').text("If I'm gonna tell a real story, I'm gonna start with my name.");
+                    audio.src = (audio.src.indexOf(moneyTreesMP3) > -1) ? 
+                            freestyleMP3 : moneyTreesMP3;
+                    break;
+                case "Drake":
+                    $('#directive').text("My pain, you can experience through the rhyming, boy.");
+                    audio.src = (audio.src.indexOf(backToBackMP3) > -1) ? 
+                            freestyleMP3 : backToBackMP3;
+                    break;
+                case "Cole":
+                    $('#directive').text("This is my canvas... I'mma paint it how I want it, baby.");
+                    audio.src = (audio.src.indexOf(slowMP3) > -1) ? 
+                            freestyleMP3 : slowMP3;
+                    break;
+                case "Kanye":
+                    $('#directive').text("Who else you know been hot this long?");
+                    audio.src = (audio.src.indexOf(mediumMP3) > -1) ? 
+                            freestyleMP3 : mediumMP3;
+                    break;
+                default:
+                    audio.src = freestyleMP3;
+            }
+            
+            if (audio.paused) {
+                audio.play();
+                startButton.innerHTML = '<button type="button">Stop</button>'
+            }
+        }
+        
+        $('#drake').click(function() { beat('Drake'); });
+        $('#cole').click(function() { beat('Cole'); });
+        $('#kanye').click(function() { beat('Kanye'); });
+        $('#kendrick').click(function() { beat('Kendrick'); });
         
         var timesStarted = 0;
         function initMP3Player() {
@@ -81,57 +120,22 @@
                 }
             }
 
-            function beat(name) {
-                switch (name) {
-                    case "Kendrick":
-                        $('#directive').text("If I'm gonna tell a real story, I'm gonna start with my name.");
-                        audio.src = (audio.src.indexOf(moneyTreesMP3) > -1) ? 
-                                freestyleMP3 : moneyTreesMP3;
-                        break;
-                    case "Drake":
-                        $('#directive').text("My pain, you can experience through the rhyming, boy.");
-                        audio.src = (audio.src.indexOf(backToBackMP3) > -1) ? 
-                                freestyleMP3 : backToBackMP3;
-                        break;
-                    case "Cole":
-                        $('#directive').text("This is my canvas... I'mma paint it how I want it, baby.");
-                        audio.src = (audio.src.indexOf(slowMP3) > -1) ? 
-                                freestyleMP3 : slowMP3;
-                        break;
-                    case "Kanye":
-                        $('#directive').text("Who else you know been hot this long?");
-                        audio.src = (audio.src.indexOf(mediumMP3) > -1) ? 
-                                freestyleMP3 : mediumMP3;
-                        break;
-                    default:
-                        audio.src = freestyleMP3;
-                }
-                
-                if (audio.paused) {
-                    audio.play();
-                    startButton.innerHTML = '<button type="button">Stop</button>'
-                }
-            }
-            
-            $('#drake').click(function() { beat('Drake'); });
-            $('#cole').click(function() { beat('Cole'); });
-            $('#kanye').click(function() { beat('Kanye'); });
-            $('#kendrick').click(function() { beat('Kendrick'); });
-
             context = new webkitAudioContext(); // AudioContext object instance
             analyser = context.createAnalyser(); // AnalyserNode method
             canvas = document.getElementById('analyzer_render');
-            ctx = canvas.getContext('2d');
-            // Re-route audio playback into the processing graph of the AudioContext
-            source = context.createMediaElementSource(audio); 
-            source.connect(analyser);
-            analyser.connect(context.destination);
-            frameLooper();
+            if (canvas != null) {
+                ctx = canvas.getContext('2d');
+                // Re-route audio playback into the processing graph of the AudioContext
+                source = context.createMediaElementSource(audio); 
+                source.connect(analyser);
+                analyser.connect(context.destination);
+                frameLooper();
+            }
         }
         
         // frameLooper() animates any style of graphics you wish to the audio frequency
         // Looping at the default frame rate that the browser provides (approx. 60 FPS)
-        function frameLooper(){
+        function frameLooper() {
             window.webkitRequestAnimationFrame(frameLooper);
             fbc_array = new Uint8Array(analyser.frequencyBinCount);
             analyser.getByteFrequencyData(fbc_array);
@@ -145,6 +149,33 @@
                 ctx.fillRect(bar_x, canvas.height, bar_width, bar_height);
             }
         }
+        
+        /* Just some mobile overrides. */
+        var generateMobileView = function() {
+            if ($(window).width() <= 1000) {
+                // Remove and reposition Drake and J. Cole
+                $('#drake').remove();
+                $('#cole').remove();
+                $('#mobi-drake').prepend('<img id="drake" src="images/drake-black-background(newest).png" \
+                        alt="Drake" height="280" />');
+                $('#mobi-cole').prepend('<img id="cole" src="images/j-cole-black-background(new).png" \
+                        alt="Cole" height="340" />');
+    
+                $('#mobi-drake').click(function() { beat('Drake'); });
+                $('#mobi-cole').click(function() { beat('Cole'); });
+    
+                // Remove the visualizer and reposition text
+                $('#mp3_player').remove();
+                $('#for-mobile').html("<br><br><br><br><br><br><br><br><br><br><br>");
+                $('p').css({'font-size': '32px'});
+                $('#final-word').css({'font-size': '32px'});
+            }
+        }
+
+        generateMobileView();
+        $(window).resize(function() {
+            generateMobileView();
+        });
     </script>
     <script src="js/typed.min.js"></script>
     <script src="js/trie.js"></script>
