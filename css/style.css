@@ -124,29 +124,29 @@ div p {
 
 #drake {
     position: absolute;
-    left: 10px;
-    top: 360px;
+    left: 231px;
+    top: 389px;
     cursor: pointer;
 }
 
 #cole {
     position: absolute;
-    right: 121px;
-    top: 350px;
+    right: 191px;
+    top: 365px;
     cursor: pointer;
 }
 
 #kanye {
     position: absolute;
-    right: 0px;
-    top: -20px;
+    right: 90px;
+    top: 62px;
     cursor: pointer;
 }
 
 #kendrick {
     position: absolute;
-    left: 10px;
-    top: 50px;
+    left: 61px;
+    top: 56px;
     cursor: pointer;
 }
 
