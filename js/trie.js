@@ -103,7 +103,7 @@ Trie.prototype = {
      * It is assumed that the word does not already exist in the trie;
      * thus, this function works by following the characters of the word
      * (starting from the end) through the trie – and when it reaches a dead end,
-     * it returns an approximation from th set of all of the dead end node's children.
+     * it returns an approximation from the set of all of the dead end node's children.
      * 
      * @param {Array} charArray An array of characters to follow
      * @return {String} An approximation of the word specified by CHAR_ARRAY
