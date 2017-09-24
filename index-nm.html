@@ -89,7 +89,7 @@
             
             if (audio.paused) {
                 audio.play();
-                startButton.innerHTML = '<button type="button">Stop</button>'
+                startButton.innerHTML = '<button type="button">Stop</button>';
             }
         }
         
@@ -120,7 +120,11 @@
                 }
             }
 
-            context = new webkitAudioContext(); // AudioContext object instance
+            try {
+                context = new webkitAudioContext(); // AudioContext object instance
+            } catch (e) {
+                context = new AudioContext();
+            }
             analyser = context.createAnalyser(); // AnalyserNode method
             canvas = document.getElementById('analyzer_render');
             if (canvas != null) {
@@ -136,7 +140,11 @@
         // frameLooper() animates any style of graphics you wish to the audio frequency
         // Looping at the default frame rate that the browser provides (approx. 60 FPS)
         function frameLooper() {
-            window.webkitRequestAnimationFrame(frameLooper);
+            try {
+                window.webkitRequestAnimationFrame(frameLooper);
+            } catch (e) {
+                window.requestAnimationFrame(frameLooper);
+            }
             fbc_array = new Uint8Array(analyser.frequencyBinCount);
             analyser.getByteFrequencyData(fbc_array);
             ctx.clearRect(0, 0, canvas.width, canvas.height); // clear the canvas
@@ -156,10 +164,8 @@
                 // Remove and reposition Drake and J. Cole
                 $('#drake').remove();
                 $('#cole').remove();
-                $('#mobi-drake').prepend('<img id="drake" src="images/drake-black-background(newest).png" \
-                        alt="Drake" height="280" />');
-                $('#mobi-cole').prepend('<img id="cole" src="images/j-cole-black-background(new).png" \
-                        alt="Cole" height="340" />');
+                $('#mobi-drake').prepend('<img id="drake" src="images/drake-black-background(newest).png" alt="Drake" height="280" />');
+                $('#mobi-cole').prepend('<img id="cole" src="images/j-cole-black-background(new).png" alt="Cole" height="340" />');
     
                 $('#mobi-drake').click(function() { beat('Drake'); });
                 $('#mobi-cole').click(function() { beat('Cole'); });
@@ -170,7 +176,7 @@
                 $('p').css({'font-size': '32px'});
                 $('#final-word').css({'font-size': '32px'});
             }
-        }
+        };
 
         generateMobileView();
         $(window).resize(function() {
@@ -199,16 +205,21 @@
                     }
                     
                     currentID += 1;
-                    currIDStr = currentID.toString();
+                    var currIDStr = currentID.toString();
                     document.getElementById("typed").innerHTML = '<span id="sos' + currIDStr + '"></span>';
                     newTyped(currIDStr);
                 }
             });
-        }
+        };
         
         var newSpeechRecognition = function() {
-            var r = new webkitSpeechRecognition();
-        
+            var r;
+            try {
+                r = new webkitSpeechRecognition();
+            } catch (e) {
+                r = new SpeechRecognition();
+            }
+
             r.onresult = function(event) {
                 // Only the final word
                 if (event.results[event.results.length - 1].isFinal) {
