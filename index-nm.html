@@ -105,6 +105,23 @@
 
             function start() {
                 if (audio.paused) {
+                    if (timesStarted == 0) {
+                        try {
+                            context = new webkitAudioContext(); // AudioContext object instance
+                        } catch (e) {
+                            context = new AudioContext();
+                        }
+                        analyser = context.createAnalyser(); // AnalyserNode method
+                        canvas = document.getElementById('analyzer_render');
+                        if (canvas != null) {
+                            ctx = canvas.getContext('2d');
+                            // Re-route audio playback into the processing graph of the AudioContext
+                            source = context.createMediaElementSource(audio);
+                            source.connect(analyser);
+                            analyser.connect(context.destination);
+                            frameLooper();
+                        }
+                    }
                     if (++timesStarted > 2) {
                         $('#directive').text("You know what to do, bro. Show 'em what you've got.");
                     } else {
@@ -118,22 +135,6 @@
                     audio.pause();
                     startButton.innerHTML = '<button type="button">Start</button>';
                 }
-            }
-
-            try {
-                context = new webkitAudioContext(); // AudioContext object instance
-            } catch (e) {
-                context = new AudioContext();
-            }
-            analyser = context.createAnalyser(); // AnalyserNode method
-            canvas = document.getElementById('analyzer_render');
-            if (canvas != null) {
-                ctx = canvas.getContext('2d');
-                // Re-route audio playback into the processing graph of the AudioContext
-                source = context.createMediaElementSource(audio); 
-                source.connect(analyser);
-                analyser.connect(context.destination);
-                frameLooper();
             }
         }
         
